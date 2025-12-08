@@ -90,7 +90,7 @@ export default function Skill() {
   };
 
   return (
-    <section id="skills" className="w-full bg-[#020204] text-white py-16 sm:py-20">
+    <section id="skills" className="w-full bg-black text-white py-16 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-25">
         {/* compact header: title + subtitle + small stat */}
         <div className="flex items-center justify-between mb-6">

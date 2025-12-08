@@ -32,7 +32,7 @@ export default function Hero({
     <header
       id="home"
       ref={rootRef}
-      className="relative min-h-screen w-full bg-[#030203] text-white overflow-hidden flex items-center"
+      className="relative min-h-screen w-full bg-black text-white overflow-hidden flex items-center"
       aria-label="Hero — Manjunath G."
     >
       {/* background glow blobs (Deep Crimson theme) */}
