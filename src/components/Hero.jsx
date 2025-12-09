@@ -69,7 +69,7 @@ export default function Hero({
                   border: "1px solid rgba(255,255,255,0.03)",
                 }}
               />
-              <div className="text-xs text-gray-400 uppercase tracking-wider">Cinematic • Motion • 3D</div>
+
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight relative">

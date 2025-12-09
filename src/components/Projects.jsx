@@ -32,7 +32,7 @@ export default function Projects() {
   ];
 
   return (
-    <section className="w-full bg-black text-white py-12 md:py-20">
+    <section id='projects' className="w-full bg-black text-white py-12 md:py-20">
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Header */}

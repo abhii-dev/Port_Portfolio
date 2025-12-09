@@ -100,10 +100,10 @@ export default function Contact() {
               </div>
 
               <div className="flex gap-2 items-center">
-                <Social icon={<FaLinkedin />} label="LinkedIn" />
-                <Social icon={<FaGithub />} label="GitHub" />
-                <Social icon={<FaTwitter />} label="Twitter" />
-                <Social icon={<FaInstagram />} label="Instagram" />
+                <Social icon={<FaLinkedin />} label="LinkedIn" href="#" />
+                <Social icon={<FaInstagram />} label="Instagram" href="https://instagram.com/yourprofile" />
+                {/* Mail icon added beside Instagram — opens mail client */}
+                <Social icon={<MdEmail />} label="Email" href="mailto:youremail@example.com" />
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function Contact() {
                 lg:max-w-xl     /* bigger on laptop */
                 xl:max-w-2xl    /* even bigger on large screens */
                 mx-auto rounded-2xl 
-                bg-[#0a0a0a] border border-white/8 
+                bg-black
                 p-4 sm:p-6 shadow-xl
               "
             >
@@ -172,10 +172,6 @@ export default function Contact() {
                   </div>
                 )}
               </form>
-
-              <div className="mt-4 text-xs text-gray-500">
-                Replies typically within 24–48 hours.
-              </div>
             </div>
           </div>
 
@@ -202,15 +198,17 @@ function Input({ icon, value, setValue, placeholder, type = "text", inputClass =
   );
 }
 
-/* Social Icon */
-function Social({ icon, label }) {
+/* Social Icon — accepts optional href (defaults to '#') */
+function Social({ icon, label, href = "#" }) {
   return (
     <a
-      href="#"
+      href={href}
       aria-label={label}
       className="inline-flex items-center justify-center p-2 rounded-md bg-black/40 border border-white/10 
                  text-red-400 hover:scale-105 transition-transform text-sm"
       style={{ minWidth: 36, minHeight: 36 }}
+      // open external links in new tab except mailto or same-page anchors
+      {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {icon}
     </a>
