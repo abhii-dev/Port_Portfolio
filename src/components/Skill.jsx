@@ -3,9 +3,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
 /**
- * Skills — Animated Neon Dots Map (Motion UI) — with compact header
- * - Uses framer-motion for dot glow + node hover + entrance animation
- * - Respects prefers-reduced-motion
+ * Skills — Animated Neon Dots Map (Motion UI)
+ * Improved centering: computes average skill column and recenters overlay so capsules appear centered
+ * on all screen sizes (phones/tablets/laptops) without hard-coded nudges.
  */
 
 export default function Skill() {
@@ -43,6 +43,54 @@ export default function Skill() {
   // reduced-motion flag
   const shouldReduceMotion = useReducedMotion();
 
+  // overlay translate percent computed from skill centroid
+  const [overlayTranslate, setOverlayTranslate] = useState(0); // percent, e.g. -8 means translateX(-8%)
+
+  // responsive clamping bucket (affects how tightly we clamp extreme translations)
+  const [bucket, setBucket] = useState("large"); // small | medium | large
+
+ // CENTROID + FIXED MOBILE OFFSET
+useEffect(() => {
+  function computeBucket() {
+    const w = window.innerWidth;
+    if (w <= 420) return "small";
+    if (w <= 1024) return "medium";
+    return "large";
+  }
+
+  function recompute() {
+    const bucket = computeBucket();
+    setBucket(bucket);
+
+    // 👉 MOBILE FIX: Force stable left alignment, do NOT use centroid
+    if (bucket === "small") {
+      setOverlayTranslate(-20);   // adjust to -18 / -22 / -25 if you want more left
+      return;
+    }
+
+    // 👉 TABLET + LAPTOP: Use centroid alignment
+    const avg = skills.reduce(
+      (acc, s) => acc + (s.col / (COLS - 1)) * 100,
+      0
+    ) / skills.length;
+
+    let desired = 50 - avg;
+
+    const clampValues = { medium: 10, large: 6 };
+    const maxAbs = clampValues[bucket];
+
+    if (desired > maxAbs) desired = maxAbs;
+    if (desired < -maxAbs) desired = -maxAbs;
+
+    setOverlayTranslate(Math.round(desired * 10) / 10);
+  }
+
+  recompute();
+  window.addEventListener("resize", recompute);
+  return () => window.removeEventListener("resize", recompute);
+}, [skills]);
+
+
   // compute glow indices for a skill (col,row)
   function computeGlow(col, row, radius = GLOW_RADIUS) {
     const out = [];
@@ -75,11 +123,22 @@ export default function Skill() {
   }
 
   // small helper to convert grid coordinate to percentage position
+  // supports clamping to keep nodes from hitting absolute edge
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const posStyle = (c, r) => {
     const left = (c / (COLS - 1)) * 100;
     const top = (r / (ROWS - 1)) * 100;
-    return { left: `${left}%`, top: `${top}%` };
+
+    // clamp tighter on small screens
+    const clampBounds = bucket === "small" ? [8, 92] : bucket === "medium" ? [5, 95] : [2, 98];
+    const leftClamped = clamp(left, clampBounds[0], clampBounds[1]);
+    return { left: `${leftClamped}%`, top: `${top}%` };
   };
+
+  // compute dot id from col,row using same indexing as dots array in the component
+  function computeDotId(col, row, cols) {
+    return row * cols + col;
+  }
 
   // entrance animation control (animate when in view)
   const containerRef = useRef(null);
@@ -107,7 +166,12 @@ export default function Skill() {
         {/* map area */}
         <motion.div
           ref={containerRef}
-          className="relative w-full p-6 bg-transparent border-none overflow-visible"
+          className="relative w-full p-6 bg-transparent border-none overflow-hidden"
+          style={{
+            // small padding on phones so clamped nodes have breathing room
+            paddingLeft: bucket === "small" ? 12 : undefined,
+            paddingRight: bucket === "small" ? 12 : undefined,
+          }}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -163,9 +227,17 @@ export default function Skill() {
 
               {/* center/right - place relative nodes anchored over dots */}
               <div className="md:col-span-2 relative h-[260px] sm:h-[220px] md:h-[300px]">
-                {/* absolute container for nodes (they sit above dots) */}
-                <div className="absolute inset-0">
-                  {skills.map((s, idx) => {
+                {/* absolute container for nodes (they sit above dots)
+                    We translate the whole overlay by overlayTranslate% so the
+                    skill centroid lines up visually with center. */}
+                <div
+                  className="absolute inset-0 px-3 sm:px-0"
+                  style={{
+                    transform: overlayTranslate ? `translateX(${overlayTranslate}%)` : undefined,
+                    willChange: overlayTranslate ? "transform" : undefined,
+                  }}
+                >
+                  {skills.map((s) => {
                     const style = {
                       ...posStyle(s.col, s.row),
                       transform: "translate(-50%, -50%)",
@@ -193,7 +265,8 @@ export default function Skill() {
                         onClick={() => handleTap(s)}
                         className={`absolute z-20 flex items-center gap-2 sm:gap-3 p-1.5 sm:p-3 rounded-full backdrop-blur-sm
                           focus:outline-none focus:ring-2 focus:ring-rose-300
-                          ${shouldReduceMotion ? "bg-white/6 border border-white/6" : "bg-white/5 border border-white/8"} text-xs sm:text-sm min-w-[86px] sm:min-w-[120px] max-w-[150px] sm:max-w-[220px]`}
+                          ${shouldReduceMotion ? "bg-white/6 border border-white/6" : "bg-white/5 border border-white/8"} text-xs sm:text-sm
+                          min-w-[72px] sm:min-w-[120px] max-w-[140px] sm:max-w-[220px]`}
                         style={{
                           ...style,
                           boxShadow: hasGlow ? "0 12px 40px rgba(163,0,0,0.12)" : "0 8px 28px rgba(0,0,0,0.28)",
@@ -221,7 +294,9 @@ export default function Skill() {
 
                         <div className="min-w-0 text-left">
                           <div className="font-semibold text-white truncate text-xs sm:text-sm">{s.name}</div>
-                          <div className="text-[11px] text-gray-400 mt-0.5">{s.tag} • {s.pct}%</div>
+                          <div className="text-[11px] text-gray-400 mt-0.5">
+                            {s.tag} • {s.pct}%
+                          </div>
                         </div>
                       </motion.button>
                     );
@@ -231,7 +306,7 @@ export default function Skill() {
             </div>
           </div>
         </motion.div>
-      </div> {/* container end */}
+      </div>
 
       {/* utilities */}
       <style>{`
