@@ -94,18 +94,37 @@ export default function Contact() {
             </div>
 
             <div className="mt-4 flex items-start gap-3">
-              <div className="flex flex-col items-center">
-                <div className="w-[2px] h-10 bg-red-500" />
-                <span className="text-xs text-gray-400 mt-1">Reach me</span>
-              </div>
+  <div className="flex flex-col items-center">
+    <div className="w-[2px] h-10 bg-red-500" />
+    <span className="text-xs text-gray-400 mt-1">Reach me</span>
+  </div>
 
-              <div className="flex gap-2 items-center">
-                <Social icon={<FaLinkedin />} label="LinkedIn" href="#" />
-                <Social icon={<FaInstagram />} label="Instagram" href="https://instagram.com/yourprofile" />
-                {/* Mail icon added beside Instagram — opens mail client */}
-                <Social icon={<MdEmail />} label="Email" href="mailto:youremail@example.com" />
-              </div>
-            </div>
+  <div className="flex gap-2 items-center">
+    {/* LinkedIn */}
+    <Social 
+      icon={<FaLinkedin />} 
+      label="LinkedIn" 
+      href="https://www.linkedin.com/in/manjunath-gasti-54ba521b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+    />
+
+    {/* Instagram */}
+    <Social 
+      icon={<FaInstagram />} 
+      label="Instagram" 
+      href="https://www.instagram.com/hellboy_devil_65/" 
+    />
+
+    {/* Email */}
+    <Social 
+      icon={<MdEmail />} 
+      label="Email" 
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=manjug8693@gmail.com" 
+    />
+  </div>
+</div>
+
+
+           
           </div>
 
           {/* RIGHT FORM — bigger on laptop, same on mobile */}
