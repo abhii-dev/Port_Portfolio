@@ -1,6 +1,6 @@
 // src/components/Contact.jsx
 import React, { useState } from "react";
-import { FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaUser, FaTag } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaUser, FaTag, FaPaperPlane } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xvgebbog";
@@ -72,17 +72,20 @@ export default function Contact() {
     <section id="contact" className="w-full bg-black text-white py-12 md:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start">
-
           {/* LEFT INFO */}
           <div className="col-span-1 md:col-span-4 md:col-start-2 flex flex-col gap-4">
-            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-wide text-red-400">
-              CONTACT
-            </h2>
-
-            <p className="text-sm sm:text-base text-gray-300 max-w-lg leading-relaxed">
-              Working on something cool? I’m available for freelance, collabs, and creative work. 
-              Tell me your idea and timeline.
-            </p>
+            {/* Header: left-aligned title + subtitle + subtle icon on right */}
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="text-3xl sm:text-2xl font-bold uppercase tracking-wide text-red-400">
+                  Contact
+                </h2>
+                <p className="text-sm sm:text-base text-gray-300 max-w-lg leading-relaxed mt-1">
+                  Working on something cool? I’m available for freelance, collabs, and creative work.
+                  Tell me your idea and timeline.
+                </p>
+              </div>
+            </div>
 
             <div className="flex flex-wrap gap-2 mt-2">
               <span className="px-3 py-1.5 rounded-full bg-black/40 border border-white/10 text-xs text-gray-200">
@@ -94,37 +97,34 @@ export default function Contact() {
             </div>
 
             <div className="mt-4 flex items-start gap-3">
-  <div className="flex flex-col items-center">
-    <div className="w-[2px] h-10 bg-red-500" />
-    <span className="text-xs text-gray-400 mt-1">Reach me</span>
-  </div>
+              <div className="flex flex-col items-center">
+                <div className="w-[2px] h-10 bg-red-500" />
+                <span className="text-xs text-gray-400 mt-1">Reach me</span>
+              </div>
 
-  <div className="flex gap-2 items-center">
-    {/* LinkedIn */}
-    <Social 
-      icon={<FaLinkedin />} 
-      label="LinkedIn" 
-      href="https://www.linkedin.com/in/manjunath-gasti-54ba521b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-    />
+              <div className="flex gap-2 items-center">
+                {/* LinkedIn */}
+                <Social
+                  icon={<FaLinkedin />}
+                  label="LinkedIn"
+                  href="https://www.linkedin.com/in/manjunath-gasti-54ba521b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                />
 
-    {/* Instagram */}
-    <Social 
-      icon={<FaInstagram />} 
-      label="Instagram" 
-      href="https://www.instagram.com/hellboy_devil_65/" 
-    />
+                {/* Instagram */}
+                <Social
+                  icon={<FaInstagram />}
+                  label="Instagram"
+                  href="https://www.instagram.com/hellboy_devil_65/"
+                />
 
-    {/* Email */}
-    <Social 
-      icon={<MdEmail />} 
-      label="Email" 
-      href="https://mail.google.com/mail/?view=cm&fs=1&to=manjug8693@gmail.com" 
-    />
-  </div>
-</div>
-
-
-           
+                {/* Email */}
+                <Social
+                  icon={<MdEmail />}
+                  label="Email"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=manjug8693@gmail.com"
+                />
+              </div>
+            </div>
           </div>
 
           {/* RIGHT FORM — bigger on laptop, same on mobile */}
@@ -132,9 +132,9 @@ export default function Contact() {
             <div
               className="
                 w-full 
-                max-w-none      /* allow full width inside grid */
-                lg:max-w-xl     /* bigger on laptop */
-                xl:max-w-2xl    /* even bigger on large screens */
+                max-w-none
+                lg:max-w-xl
+                xl:max-w-2xl
                 mx-auto rounded-2xl 
                 bg-black
                 p-4 sm:p-6 shadow-xl
@@ -193,7 +193,6 @@ export default function Contact() {
               </form>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -226,7 +225,6 @@ function Social({ icon, label, href = "#" }) {
       className="inline-flex items-center justify-center p-2 rounded-md bg-black/40 border border-white/10 
                  text-red-400 hover:scale-105 transition-transform text-sm"
       style={{ minWidth: 36, minHeight: 36 }}
-      // open external links in new tab except mailto or same-page anchors
       {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {icon}

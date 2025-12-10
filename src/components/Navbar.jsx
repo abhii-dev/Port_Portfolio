@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
 import { label } from "framer-motion/client";
+import Education from "./Education";
 
 /**
  * Navbar using framer-motion's animate() for smooth scrolling.
@@ -11,6 +12,7 @@ import { label } from "framer-motion/client";
 const NAV_ITEMS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
+  { id: "education", label: "Education"},
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },

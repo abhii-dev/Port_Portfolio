@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaFolderOpen } from "react-icons/fa";
 
 // Projects — Aesthetic single-file React component using Tailwind + Framer Motion
 // Drop this into your project (e.g. src/components/Projects.jsx)
@@ -9,19 +10,19 @@ export default function Projects() {
 
   const projects = {
     "3d": [
-      { name: "xyz", url: "#" , desc: "asdasdasdasdasdasdasdasdad"},
-      { name: "xyz", url: "#" , desc: "dasdasdasdasdasdasdasdasdasd"},
-      { name: "xyz", url: "#" , desc: "asdasdasdasdasdasdasdasdasdasd"},
+      { name: "3D animation showreel - 2021", url: "https://vimeo.com/584860987"},
+      { name: "xyz", url: "#"},
+      { name: "xyz", url: "#"},
     ],
     "video": [
-      { name: "xyz", url: "#", desc: "asdasdasdasddadwedweddasdasd"},
-      { name: "xyz", url: "#", desc: "sadqdqdwededwsdasdasdasdsadsda"},
-      { name: "xyz", url: "#", desc: "wdewef3ferfeferferferferfefef"},
+      { name: "xyz", url: "#"},
+      { name: "xyz", url: "#"},
+      { name: "xyz", url: "#"},
     ],
     "motion": [
-      { name: "xyz", url: "#", desc: "erferferferfekmfjenrifjeni"},
-      { name: "xyz", url: "#", desc: "wjfnwijenfiwjenfijwnefiwjnef"},
-      { name: "xyz", url: "#", desc: "wefkwefijnefhwnejfbwjehfnjwhenfj"},
+      { name: "xyz", url: "#"},
+      { name: "xyz", url: "#"},
+      { name: "xyz", url: "#"},
     ],
   };
 
@@ -35,13 +36,20 @@ export default function Projects() {
     <section id='projects' className="w-full bg-black text-white py-12 md:py-20">
       <div className="max-w-5xl mx-auto px-6">
 
-        {/* Header */}
-        <div className="flex items-start justify-between gap-6 mb-8">
+       {/* Header: left-aligned title + subtitle, subtle icon on the right */}
+        <div className="mb-8 flex items-start justify-between gap-6">
           <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-red-400">Projects</h2>
+            <h2 className="text-2xl font-bold uppercase tracking-wide text-red-400">
+              Projects
+            </h2>
+          </div>
+
+          <div className="hidden md:flex items-center">
+            <div className="p-2 rounded-full bg-white/5 border border-white/10 shadow-sm">
+              <FaFolderOpen className="w-5 h-5 text-rose-300 opacity-85" />
+            </div>
           </div>
         </div>
-
         {/* Tabs */}
         <div className="flex items-center gap-3 mb-8 flex-wrap">
           {tabs.map((t) => (

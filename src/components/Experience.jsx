@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { FaBriefcase } from "react-icons/fa";
 
 /** Minimal job timeline — clean, professional */
 
@@ -49,13 +50,24 @@ export default function Experience() {
       className="w-full bg-black text-white py-10 md:py-14 overflow-hidden"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="mb-10 text-center">
-          <h2 className="mt-4 text-2xl md:text-2xl font-bold uppercase tracking-wide text-red-400">
-            Experience
-          </h2>
-        </div>
+        {/* Header (left aligned) */}
+        <div className="mb-10 flex items-start justify-between">
+          <div>
+            <h2 className="mt-0 text-2xl md:text-2xl font-bold uppercase tracking-wide text-red-400 text-left">
+              Experience
+            </h2>
+            <p className="mt-1 text-sm text-gray-400">
+              Roles, companies and periods — a concise career timeline.
+            </p>
+          </div>
 
+          {/* subtle icon on the right */}
+          <div className="hidden md:flex items-center">
+            <div className="p-2 rounded-full bg-white/5 border border-white/10 shadow-sm">
+              <FaBriefcase className="w-5 h-5 text-rose-300 opacity-80" />
+            </div>
+          </div>
+        </div>
         {/* Timeline */}
         <div className="relative">
           {/* center line */}

@@ -1,6 +1,7 @@
 // src/components/Skill.jsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { FaBolt } from "react-icons/fa";
 
 /**
  * Skills — Animated Neon Dots Map (Motion UI)
@@ -160,6 +161,12 @@ useEffect(() => {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-wide text-red-400">Skills</h2>
+          </div>
+
+          <div className="hidden md:flex items-center">
+            <div className="p-2 rounded-full bg-white/5 border border-white/10 shadow-sm">
+              <FaBolt className="w-5 h-5 text-rose-300 opacity-80" />
+            </div>
           </div>
         </div>
 
