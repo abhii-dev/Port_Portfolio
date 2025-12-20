@@ -11,8 +11,9 @@ export default function Projects() {
   const projects = {
     "3d": [
       { name: "3D animation showreel - 2021", url: "https://vimeo.com/584860987"},
-      { name: "xyz", url: "#"},
-      { name: "xyz", url: "#"},
+      { name: "The Bad Guys Breaking In S01E01", url: "https://vimeo.com/1147754461?fl=ip&fe=ec"},
+      { name: "The Bad Guys Breaking In S01E03", url: "https://vimeo.com/1147764195?fl=ip&fe=ec"},
+      { name: "The Bad Guys Breaking In S01E07", url: "https://vimeo.com/1147770999?fl=ip&fe=ec"}
     ],
     "video": [
       { name: "xyz", url: "#"},
