@@ -1,91 +1,221 @@
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  Sparkles,
+} from "lucide-react";
 
 export default function Contact() {
   return (
     <section
-      className="relative w-full px-6 md:px-20 py-36 overflow-hidden text-center"
+      className="relative w-full overflow-hidden py-36 px-6 md:px-20"
       style={{
-        background: "linear-gradient(to bottom, #cfc7bc, #dcd5cb, #E4DDD3)",
-        color: "#003f3a",
+        background:
+          "radial-gradient(circle at top, #f0ebe3 0%, #e4ddd3 40%, #cfc7bc 100%)",
       }}
     >
-      {/* NOISE */}
-      <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      {/* BACKGROUND GLOW */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-[-120px] left-[-120px] w-[420px] h-[420px] bg-[#00A198]/10 blur-3xl rounded-full"></div>
 
-      {/* SOFT GLOW (adds character) */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#00A198]/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-120px] right-[-120px] w-[420px] h-[420px] bg-[#007d74]/10 blur-3xl rounded-full"></div>
+      </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      {/* GRID */}
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#004f4a 1px, transparent 1px), linear-gradient(to right, #004f4a 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      ></div>
 
-        {/* ===== BIG THANK YOU ===== */}
-        <h1 className="text-[64px] md:text-[88px] font-black leading-none tracking-tight">
-          <span className="">THANK</span>
+      <div className="relative z-10 max-w-6xl mx-auto text-center">
+
+        {/* TOP DESIGN */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center gap-4 mb-10"
+        >
+
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#00A198]" />
+
+          <div className="relative flex items-center justify-center">
+
+            <div className="absolute w-5 h-5 rounded-full bg-[#00A198]/30 animate-ping"></div>
+
+            <div className="relative w-3 h-3 rounded-full bg-[#004f4a] border border-white shadow-lg"></div>
+
+          </div>
+
+          <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#00A198]" />
+
+        </motion.div>
+
+        {/* BIG HEADING */}
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="text-[70px] md:text-[140px] font-black leading-[0.85] tracking-tight"
+        >
+          <span className="text-[#003f3a]">THANK</span>
+
+          <br />
+
           <span
-            className="mt-2 pl-5"
             style={{
-              background: "linear-gradient(to bottom, #004f4a, #00A198)",
+              background:
+                "linear-gradient(to bottom, #004f4a, #00A198)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
+            className="drop-shadow-[0_10px_30px_rgba(0,161,152,0.25)]"
           >
-             YOU
+            YOU
           </span>
-        </h1>
+        </motion.h1>
 
-        <p className="mt-6 text-[#005f59] max-w-xl mx-auto text-sm md:text-base leading-relaxed">
-          Thanks for checking out my work. I’m always open to creating
-          something meaningful and visually impactful.
-        </p>
+        {/* SUBTEXT */}
+        <motion.p
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mt-8 text-[#005f59] max-w-2xl mx-auto text-[16px] md:text-[18px] leading-relaxed"
+        >
+          Thanks for exploring my work and creative journey. I’m always excited
+          to collaborate on cinematic edits, motion graphics, storytelling,
+          and visually impactful projects.
+        </motion.p>
 
-        {/* ===== FLOATING CONTACT CARD ===== */}
-        <div className="mt-20 relative">
+        {/* MAIN CONTACT CARD */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="relative mt-24"
+        >
+          {/* Glow */}
+          <div className="absolute inset-0 blur-3xl bg-[#00A198]/10 rounded-[40px]" />
 
-          <div className="absolute inset-0 blur-2xl bg-[#00A198]/10 rounded-3xl" />
+          {/* Card */}
+          <div className="relative rounded-[40px] border border-white/30 bg-white/20 backdrop-blur-2xl shadow-2xl overflow-hidden">
 
-          <div className="relative bg-white/30 backdrop-blur-md border border-[#00A198]/20 rounded-3xl px-8 py-8 md:px-12 md:py-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* TOP SECTION */}
+            <div className="px-10 py-12 md:px-16 md:py-14 border-b border-white/10">
 
-            {/* NAME BLOCK */}
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-semibold">Manjunath G</h3>
-              <p className="text-sm text-[#006b65] mt-1">
-                Video Editor & 3D Animator
-              </p>
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+                {/* LEFT */}
+                <div className="text-center lg:text-left">
+                  <h2
+                    className="text-4xl md:text-5xl font-black"
+                    style={{
+                      background:
+                        "linear-gradient(to bottom, #004f4a, #00A198)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    MANJUNATH G
+                  </h2>
+
+                  <p className="mt-4 text-[#006b65] text-lg">
+                    Video Editor • 3D Animator • Motion Designer
+                  </p>
+                </div>
+
+                {/* RIGHT DESIGN */}
+                <div className="flex items-center gap-5">
+
+                  {/* Line */}
+                  <div className="hidden md:block w-24 h-[1px] bg-gradient-to-r from-transparent to-[#00A198]" />
+
+                  {/* Animated Circle */}
+                  <div className="relative flex items-center justify-center">
+
+                    <div className="absolute w-20 h-20 rounded-full border border-[#00A198]/20 animate-pulse"></div>
+
+                    <div className="absolute w-14 h-14 rounded-full border border-[#00A198]/30"></div>
+
+                    <div className="w-4 h-4 rounded-full bg-gradient-to-b from-[#004f4a] to-[#00A198] shadow-[0_0_20px_rgba(0,161,152,0.7)]"></div>
+
+                  </div>
+
+                  {/* Line */}
+                  <div className="hidden md:block w-24 h-[1px] bg-gradient-to-l from-transparent to-[#00A198]" />
+
+                </div>
+              </div>
             </div>
 
             {/* CONTACT INFO */}
-            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            <div className="grid md:grid-cols-2">
 
-              <div className="text-center">
-                <p className="text-xs text-[#007d74] uppercase tracking-wider">
+              {/* PHONE */}
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                href="tel:+919539647418"
+                className="group relative p-10 md:p-12 border-b md:border-b-0 md:border-r border-white/10 flex flex-col items-center justify-center overflow-hidden"
+              >
+                {/* Hover Glow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#00A198]/0 via-transparent to-[#00A198]/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+                <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#00A198]/10 flex items-center justify-center mb-6">
+                  <Phone
+                    size={28}
+                    className="text-[#004f4a]"
+                  />
+                </div>
+
+                <p className="relative z-10 text-xs tracking-[4px] uppercase text-[#007d74]">
                   Contact
                 </p>
-                <a
-                  href="tel:+919539647418"
-                  className="text-lg font-semibold hover:opacity-70 transition"
-                >
+
+                <h3 className="relative z-10 mt-4 text-2xl md:text-3xl font-black text-[#003f3a]">
                   95396 47418
-                </a>
-              </div>
+                </h3>
+              </motion.a>
 
-              <div className="hidden md:block w-[1px] h-10 bg-[#00A198]/30" />
+              {/* EMAIL */}
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                href="mailto:manjug8693@gmail.com"
+                className="group relative p-10 md:p-12 flex flex-col items-center justify-center overflow-hidden"
+              >
+                {/* Hover Glow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#00A198]/0 via-transparent to-[#00A198]/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-              <div className="text-center">
-                <p className="text-xs text-[#007d74] uppercase tracking-wider">
+                <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#00A198]/10 flex items-center justify-center mb-6">
+                  <Mail
+                    size={28}
+                    className="text-[#004f4a]"
+                  />
+                </div>
+
+                <p className="relative z-10 text-xs tracking-[4px] uppercase text-[#007d74]">
                   Email
                 </p>
-                <a
-                  href="mailto:manjug8693@gmail.com"
-                  className="text-lg font-semibold hover:opacity-70 transition"
-                >
+
+                <h3 className="relative z-10 mt-4 text-xl md:text-2xl font-black text-[#003f3a] break-all">
                   manjug8693@gmail.com
-                </a>
-              </div>
+                </h3>
 
+                <p className="relative z-10 mt-3 text-[#006b65] text-sm">
+                  Let’s build something visually amazing
+                </p>
+              </motion.a>
             </div>
-
           </div>
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );
