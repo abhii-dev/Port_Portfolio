@@ -181,7 +181,7 @@ export default function Contact() {
                 </p>
 
                 <h3 className="relative z-10 mt-4 text-2xl md:text-3xl font-black text-[#003f3a]">
-                  95396 47418
+                  90193 13710
                 </h3>
               </motion.a>
 
