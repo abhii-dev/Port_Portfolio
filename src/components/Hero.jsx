@@ -36,7 +36,7 @@ export default function Hero() {
         ></div>
 
         {/* Bottom Text */}
-        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 text-center">
+        <div className="absolute bottom-25 left-1/2 -translate-x-1/2 text-center ">
           <p
             className="text-lg font-extrabold"
             style={{ color: "#004f4a" }}
@@ -47,7 +47,13 @@ export default function Hero() {
             className="text-lg font-extrabold"
             style={{ color: "#004f4a" }}
           >
-            Visual Designer
+            // 3D Animator
+          </p>
+            <p
+            className="text-lg font-extrabold"
+            style={{ color: "#004f4a" }}
+          >
+           //  Motion Graphics
           </p>
         </div>
 
